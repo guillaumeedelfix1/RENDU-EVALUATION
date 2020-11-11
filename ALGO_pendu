@@ -1,0 +1,149 @@
+ //Algo pendu
+ //BUT: jeu du pendu (deviner un mot en un nombre d'essaie limiter) 
+ //Entrée: Un utilisateur saisis un mot 
+ //SORTIS:L'utilisateur à gagner ou perdu 
+
+ VAR
+ 	mot,base:CHAINE
+ 	lettre:CHARACTERE
+ 	ent,i,j,erreur,reste,compteur:ENTIER
+ 	
+FONCTION dessin(compteur:ENTIER):CHAINE
+ DEBUT
+ 	SI(compteur=1) ALORS
+ 	DEBUT
+ 		ECRIRE(' ')
+        ECRIRE(' ')
+        ECRIRE(' ')
+        ECRIRE(' ')
+        ECRIRE('_____ ')
+    FIN
+        SINON SI(compteur=2)ALORS
+            DEBUT
+                ECRIRE('    ')
+                ECRIRE('  | ')
+                ECRIRE('  | ')
+                ECRIRE('  | ')
+                ECRIRE('__|__ ')
+            FIN
+            SINON SI(compteur = 3)ALORS
+                DEBUT
+                    ECRIRE('________')
+                    ECRIRE('  |     ')
+                    ECRIRE('  |     ')
+                    ECRIRE('  |     ')
+                    ECRIRE('__|__   ')
+                DEBUT
+                SINON SI(compteur = 4)ALORS
+                    DEBUT
+                        ECRIRE('________')
+                        ECRIRE('  |    | ')
+                        ECRIRE('  |     ')
+                        ECRIRE('  |     ')
+                        ECRIRE('__|__   ')
+                    FIN
+                    SINON SI(compteur = 5)ALORS
+                         DEBUT
+                            ECRIRE('_______')
+                            ECRIRE('  |   | ')
+                            ECRIRE('  |   0 ')
+                            ECRIRE('  |    ')
+                            ECRIRE('__|__  ') 
+                        FIN
+                        SINON SI(compteur = 6)ALORS
+                            DEBUT
+                                ECRIRE('_______')
+                                ECRIRE('  |   | ')
+                                ECRIRE('  |   0 ')
+                                ECRIRE('  |   | ')
+                                ECRIRE('__|__   ')
+                            FIN
+                            SINON SI(compteur = 7)ALORS
+                                DEBUT
+                                    ECRIRE('_______')
+                                    ECRIRE('  |   | ')
+                                    ECRIRE('  |   0 ')
+                                    ECRIRE('  |  /| ')
+                                    ECRIRE('__|__   ')
+                                FIN
+                            SINON SI (compteur = 8)ALORS
+                                DEBUT
+                                    ECRIRE('_______ ')
+                                    ECRIRE('  |   | ')
+                                    ECRIRE('  |   0 ')
+                                    ECRIRE('  |  /|\')
+                                    ECRIRE('__|__   ')
+                                FIN
+                                SINON SI(compteur = 9)ALORS
+                                    DEBUT
+                                        ECRIRE('_______ ')
+                                        ECRIRE('  |   |  ')
+                                        ECRIRE('  |   0  ')
+                                        ECRIRE('  |  /|\ ')
+                                        ECRIRE('__|__/  ')
+                                FIN
+                                SINON SI(compteur = 10)ALORS
+                                    DEBUT
+                                        ECRIRE('_______')
+                                        ECRIRE('  |   | ')
+                                        ECRIRE('  |   0 ')
+                                        ECRIRE('  |  /|\')
+                                        ECRIRE('__|__/ \')
+                                    FIN
+FIN
+ FONCTION Question(lettre:CHARACTERE):CHAINE//DEMANDER LES LETTRE POUR DEVINER LE MOT
+ DEBUT
+    REPETER
+    DEBUT
+        ECRIRE('Saisissez une lettre')
+        LIRE(lettre)
+        erreur <- 0
+    POUR j <- 1 DE ent FAIRE
+    DEBUT
+        SI (lettre = mot[j])ALORS
+        DEBUT
+            SI (base[j] = '-')ALORS
+            DEBUT
+                base[j] <- lettre
+                erreur <- erreur + 1
+            FIN
+        FIN
+        ECRIRE(base[j])
+    FIN
+    ECRIRE
+    SI (erreur = 0)ALORS
+    DEBUT
+        compteur <- compteur + 1
+    FIN
+    ECRIRE(dessin(compteur))
+FIN
+    JUSQU'A (mot = base) OU (compteur = 10)
+    SI(compteur = 10)ALORS
+        DEBUT
+            
+            ECRIRE('YOU LOSE')
+            LIRE()
+        FIN
+    FIN
+DEBUT		//programme principale 
+    
+    compteur<-0
+    ECRIRE('Saisissez un mot')
+    LIRE(mot)
+    
+    ent<-LONGUEUR(mot)
+    reste<-ent
+    base <- mot
+    POUR i <- 1 DE ent FAIRE
+DEBUT
+    base[i] <- '-'
+FIN
+    ECRIRE(base)
+    ECRIRE(Question(lettre))
+    SI(compteur < 10)ALORS
+        DEBUT
+            
+            ECRIRE('YOU WIN')
+            LIRE
+        FIN
+FIN.
