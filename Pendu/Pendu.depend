@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1622215830 source:e:\ne pas toucher\projet code blocks\jeu du pendu\pendu\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<windows.h>
+
